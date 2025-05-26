@@ -19,7 +19,7 @@ spec:
   source:
     repoURL: git@github.com:zexianchoo/slowedapp-src.git
     targetRevision: HEAD
-    path: envs/staging/
+    path: envs/staging
   destination: # single argocd application to deploy to multiple clusters?
     server: 'https://kubernetes.default.svc'
     namespace: prod
