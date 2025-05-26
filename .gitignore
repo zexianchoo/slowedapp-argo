@@ -1,3 +1,5 @@
 terraform/values.yaml
 argo/gh-secret.yaml
+terraform/.terraform
 terraform/terraform.*
+terraform/.terraform.lock.hcl

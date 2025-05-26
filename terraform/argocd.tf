@@ -11,10 +11,11 @@ resource "helm_release" "argocd" {
 
 
 resource "helm_release" "argo_updater" {
+  name = "updater"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argocd-image-updater"
   namespace = "argocd"
 
   create_namespace = true
-  version = "0.16.0"
+  version = "0.12.1"
 }
