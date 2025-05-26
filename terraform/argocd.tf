@@ -9,3 +9,12 @@ resource "helm_release" "argocd" {
   values = [file("values.yaml")]
 }
 
+
+resource "helm_release" "argo_updater" {
+  repository = "https://argoproj.github.io/argo-helm"
+  chart      = "argocd-image-updater"
+  namespace = "argocd"
+
+  create_namespace = true
+  version = "0.16.0"
+}
