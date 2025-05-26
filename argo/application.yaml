@@ -11,6 +11,8 @@ metadata:
   namespace: argocd # this has to be the same namespace as where argocd is running
   finalizers:
     - resources-finalizer.argocd.argoproj.io 
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: theseanchoo/slowedapp-frontend:~v0.1
 spec:
   project: default
   source:
