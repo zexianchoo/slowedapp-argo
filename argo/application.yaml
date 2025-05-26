@@ -19,6 +19,7 @@ spec:
     path: envs/staging/apps
   destination: # single argocd application to deploy to multiple clusters?
     server: 'https://kubernetes.default.svc'
+    namespace: prod
   syncPolicy:
     automated:
       prune: true
