@@ -14,9 +14,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/zexianchoo/slowedapp-manifest.git'
+    repoURL: 'https://github.com/zexianchoo/slowedapp-argo.git'
     targetRevision: HEAD
-    path: envs/staging/frontend
+    path: envs/staging/apps
   destination: # single argocd application to deploy to multiple clusters?
     server: 'https://kubernetes.default.svc'
     namespace: prod

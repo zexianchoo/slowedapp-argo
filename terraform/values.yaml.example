@@ -1,0 +1,20 @@
+# values.yaml
+
+global:
+  image:
+    tag: "v3.0.3" 
+
+configs:
+  secret:
+    argocdServerAdminPassword: "<your_password_hash_here>"
+  # The password hash can be generated using the following command:
+  # htpasswd -bnB -s <username> <password> | cut -d ":" -f 2
+  params:
+    server.insecure: true 
+
+server:
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30080
+
