@@ -9,7 +9,6 @@ resource "helm_release" "argocd" {
   values = [file("values/argo_values.yaml")]
 }
 
-
 resource "helm_release" "argo_updater" {
   name = "updater"
   repository = "https://argoproj.github.io/argo-helm"

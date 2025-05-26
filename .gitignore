@@ -1,4 +1,5 @@
-terraform/values.yaml
+terraform/values/argo_values.yaml
+terraform/values/updater_values.yaml
 argo/gh-secret.yaml
 terraform/.terraform
 terraform/terraform.*
