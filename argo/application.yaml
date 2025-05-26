@@ -14,7 +14,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/zexianchoo/slowedapp-argo.git'
+    repoURL: git@github.com:zexianchoo/slowedapp-src.git
     targetRevision: HEAD
     path: envs/staging/apps
   destination: # single argocd application to deploy to multiple clusters?
