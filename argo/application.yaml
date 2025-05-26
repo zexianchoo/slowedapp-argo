@@ -13,6 +13,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io 
   annotations:
     argocd-image-updater.argoproj.io/image-list: theseanchoo/slowed-frontend:~v0.1
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
