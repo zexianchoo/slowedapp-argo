@@ -1,4 +1,4 @@
-# values.yaml
+# argo_values.yaml
 
 global:
   image:
