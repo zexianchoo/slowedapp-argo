@@ -20,3 +20,4 @@ spec:
           image: theseanchoo/slowed-frontend:latest
           ports:
             - containerPort: 80
+            
