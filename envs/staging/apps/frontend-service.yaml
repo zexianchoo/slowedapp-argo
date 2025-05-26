@@ -4,11 +4,11 @@ metadata:
   name: slowedapp-frontend-service
   namespace: slowedapp
   labels:
-    app: slowedapp-frontend-dev 
+    app: slowedapp-frontend
 spec:
   type: NodePort
   selector:
-    app: slowedapp-frontend-dev  
+    app: slowedapp-frontend
   ports:
     - protocol: TCP
       port: 80 
