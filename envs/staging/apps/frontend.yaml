@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app:  slowed-frontend
+      app:  slowedapp-frontend 
   template:
     metadata:
       labels:
-        app:  slowed-frontend
+        app:  slowedapp-frontend 
     spec:
       containers:
         - name: slowed-frontend
