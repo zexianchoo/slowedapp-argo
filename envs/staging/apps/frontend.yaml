@@ -17,6 +17,11 @@ spec:
       containers:
         - name: slowed-frontend
           imagePullPolicy: Always
-          image: theseanchoo/slowed-frontend
+          image: theseanchoo/slowed-frontend:latest
           ports:
             - containerPort: 5173
+          env:
+            - name: VITE_SERVER_HOST
+              value: "0.0.0.0" # Optional: if you use env vars in vite.config.js
+            - name: VITE_PORT
+              value: "5173"
