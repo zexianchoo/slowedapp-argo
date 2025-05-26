@@ -3,11 +3,11 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
   extraPortMappings:
-  - containerPort: 30080 # This is an arbitrary port you choose for the NodePort *inside* the Kind node.
-    hostPort: 11000       # This is the port on your *host machine* (e.g., localhost:8081)
-    listenAddress: "0.0.0.0" # Optional: Listen on all interfaces on your host
+  - containerPort: 30080 
+    hostPort: 11000       
+    listenAddress: "0.0.0.0" 
     protocol: TCP
-  - containerPort: 30000 # This is an arbitrary port you choose for the NodePort *inside* the Kind node.
-    hostPort: 5173       # This is the port on your *host machine* (e.g., localhost:8081)
-    listenAddress: "0.0.0.0" # Optional: Listen on all interfaces on your host
+  - containerPort: 30000
+    hostPort: 5173      
+    listenAddress: "0.0.0.0" 
     protocol: TCP
