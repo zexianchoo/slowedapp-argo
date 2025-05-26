@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+# This is an ArgoCD Application resource definition
+# It defines an application that ArgoCD will manage
+# The application will be deployed to the cluster where ArgoCD is running
+# The application will be sourced from a Git repository
+
+kind: Application
+metadata: 
+  name: myapp 
+  namespace: argocd # this has to be the same namespace as where argocd is running
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io 
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/zexianchoo/slowedapp-manifest.git'
+    targetRevision: HEAD
+    path: envs/staging/frontend
+  destination: # single argocd application to deploy to multiple clusters?
+    server: 'https://kubernetes.default.svc'
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # create namespace if it does not exist
