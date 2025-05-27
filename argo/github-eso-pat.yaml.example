@@ -3,7 +3,6 @@ kind: Secret
 metadata:
   name: github-eso-pat
   namespace: external-secrets 
-CreateNamespace: true 
 type: Opaque
 stringData:
-  personal_access_token: "<YOUR_GITHUB_PAT>" 
+  personal_access_token: "<YOUR_GITHUB_PAT>" # this will be used to access to "src" repo, which is private (argo should be able to access it via gh-secret.yaml)
