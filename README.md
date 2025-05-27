@@ -5,3 +5,6 @@ kubectl apply -f argo/gh-secret.yaml
 kubectl apply -f argo/application.yaml
 
 login to argocd and it should be working
+
+
+![Diagram](diagram.png)
