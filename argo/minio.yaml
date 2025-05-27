@@ -14,11 +14,11 @@ spec:
     targetRevision: 5.3.0
     helm:
       values: |
-        existingSecret: "minio-credentials-secret" # The name of the K8s Secret in minio-ns
+        existingSecret: "minio-credentials-secret" 
 
         persistence:
           enabled: true
-          storageClass: "local-path"
+          storageClass: "standard"
           size: 10Gi
         service:
           type: ClusterIP
