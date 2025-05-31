@@ -15,7 +15,7 @@ metadata:
     argocd-image-updater.argoproj.io/image-list: |
       theseanchoo/slowedapp-frontend.update-strategy=semver
       theseanchoo/slowedapp-backend.update-strategy=semver
-      theseanchoo/slowedapp-workers.update-strategy=semver
+      theseanchoo/slowedapp-worker.update-strategy=semver
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
