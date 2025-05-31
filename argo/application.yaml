@@ -12,7 +12,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io 
   annotations:
-    argocd-image-updater.argoproj.io/image-list: theseanchoo/slowedapp-frontend:~v0.1, theseanchoo/slowedapp-backend:~v0.1
+    argocd-image-updater.argoproj.io/image-list: theseanchoo/slowedapp-frontend, theseanchoo/slowedapp-backend, theseanchoo/slowedapp-worker
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
