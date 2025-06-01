@@ -19,3 +19,27 @@ resource "helm_release" "argo_updater" {
   version = "0.12.1"
   values = [file("values/updater_values.yaml")]
 }
+
+# cert manager terraform
+resource "helm_repository" "jetstack" {
+  name = "jetstack"
+  url  = "https://charts.jetstack.io"
+}
+
+# cert manager terraform
+resource "helm_release" "cert_manager" {
+  name = "cert-manager"
+  namespace        = "cert-manager"
+  create_namespace = true
+
+  chart = "jetstack/cert-manager"
+  version = "v1.14.5"
+  set {
+    name  = "installCRDs"
+    value = "true"
+    type  = "string" 
+  }
+
+  depends_on = [helm_repository.jetstack]
+  wait = true
+}
