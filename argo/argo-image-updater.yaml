@@ -1,0 +1,72 @@
+---
+# argocd-image-updater-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: argocd-image-updater
+    app.kubernetes.io/part-of: argocd
+  name: argocd-image-updater # Standard name for the deployment
+  namespace: argocd # This must match your Argo CD installation namespace
+spec:
+  replicas: 1 # You can scale this if needed, but 1 is typical
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-image-updater
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: controller
+        app.kubernetes.io/name: argocd-image-updater
+        app.kubernetes.io/part-of: argocd
+      annotations:
+        # This checksum ensures the Deployment performs a rolling update when the ConfigMap changes
+        checksum/config: 18dc0879235f99fe1a49394a06e86d3288a02545300f73a1e71a4610081368b6
+    spec:
+      # This ServiceAccount is essential and must be defined in your overall Argo CD install.
+      # It grants RBAC permissions to the updater.
+      serviceAccountName: argocd-image-updater 
+      
+      # Volumes used by the container
+      volumes:
+        - emptyDir: {} # For temporary files
+          name: tmp
+        - configMap: # Mounts the 'argocd-image-updater-config' ConfigMap as a volume
+            name: argocd-image-updater-config
+          name: config # Name of the volume for the ConfigMap
+      
+      containers:
+        - args:
+            - --loglevel=info # Default log level
+            - --logtostderr
+            - --interval=2m # How often to check for image updates
+            - --health-port=8080
+            - --metrics-port=8081
+            # --- Argo CD API Server connection details ---
+            # These point to the internal Argo CD server service
+            - --argocd-url=https://argocd-server.argocd.svc.cluster.local:443
+            - --argocd-insecure=true # Set to false if you configure proper TLS for Argo CD
+            - --argocd-grpc-web=true # Needed for gRPC-web communication
+          env:
+            - name: KUBERNETES_NAMESPACE # Injects the pod's own namespace
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: quay.io/argoproj/argocd-image-updater:v0.16.0 # Official image. Use specific tag or 'stable'.
+          imagePullPolicy: Always
+          name: argocd-image-updater
+          ports:
+            - containerPort: 8080
+              name: health
+            - containerPort: 8081
+              name: metrics
+          resources:
+            requests: # Resource requests help scheduler
+              cpu: 10m
+              memory: 32Mi
+          volumeMounts:
+            - mountPath: /tmp # Mount temporary volume
+              name: tmp
+            - mountPath: /app/config # Mount ConfigMap to /app/config, where updater expects registries.conf
+              name: config
