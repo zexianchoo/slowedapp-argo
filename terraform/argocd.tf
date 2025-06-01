@@ -21,12 +21,6 @@ resource "helm_release" "argo_updater" {
 }
 
 # cert manager terraform
-resource "helm_repository" "jetstack" {
-  name = "jetstack"
-  url  = "https://charts.jetstack.io"
-}
-
-# cert manager terraform
 resource "helm_release" "cert_manager" {
   name = "cert-manager"
   namespace        = "cert-manager"
@@ -40,6 +34,5 @@ resource "helm_release" "cert_manager" {
     type  = "string" 
   }
 
-  depends_on = [helm_repository.jetstack]
   wait = true
 }
