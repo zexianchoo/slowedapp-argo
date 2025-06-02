@@ -12,10 +12,15 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io 
   annotations:
-    argocd-image-updater.argoproj.io/image-list: |
-      theseanchoo/slowed-frontend.update-strategy=semver
-      theseanchoo/slowed-backend.update-strategy=semver
-      theseanchoo/slowed-workers.update-strategy=semver
+    argocd-image-updater.argoproj.io/image-list: >-
+      frontend=theseanchoo/slowed-frontend,
+      backend=theseanchoo/slowed-backend,
+      workers=theseanchoo/slowed-workers
+
+    # Define the update strategy for each alias
+    argocd-image-updater.argoproj.io/frontend.update-strategy: semver
+    argocd-image-updater.argoproj.io/backend.update-strategy: semver
+    argocd-image-updater.argoproj.io/workers.update-strategy: semver
     argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
