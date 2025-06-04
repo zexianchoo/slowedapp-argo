@@ -1,0 +1,16 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: slowedapp
+servers: 1 # This is your control-plane node
+agents: 0 # No worker nodes defined in your kind config
+ports:
+  # Argo CD port mapping
+  - port: 11000:30080 # Maps host port 11000 to container port 30080
+    nodeFilters:
+      - loadbalancer # Apply to the loadbalancer
+
+  # Webapp port mapping
+  - port: 5173:30000 # Maps host port 5173 to container port 30000
+    nodeFilters:
+      - loadbalancer # Apply to the loadbalancer
