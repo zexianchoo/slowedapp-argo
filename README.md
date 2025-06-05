@@ -8,4 +8,11 @@ kubectl apply -f argo/application.yaml
 kubectl apply -f argo/secrets.yaml
 login to argocd and it should be working
 
+sudo cp /root/slowedapp/slowedapp-argo/nginx/reverse_proxy.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/reverse_proxy.conf /etc/nginx/sites-enabled/
+ensure cloudflare certs are correctly refed.
+
+sudo ufw allow 'Nginx Full'
+sudo ufw enable            
+sudo systemctl enable nginx
 ![Diagram](diagram.png)

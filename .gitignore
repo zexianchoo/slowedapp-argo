@@ -6,3 +6,4 @@ terraform/terraform.*
 terraform/.terraform.lock.hcl
 argo/github-eso-pat.yaml
 argo/secrets.yaml
+cloudflare.*
