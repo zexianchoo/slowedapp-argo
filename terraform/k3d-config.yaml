@@ -2,15 +2,35 @@ apiVersion: k3d.io/v1alpha5
 kind: Simple
 metadata:
   name: slowedapp
-servers: 1 # This is your control-plane node
-agents: 0 # No worker nodes defined in your kind config
+servers: 1 
+agents: 1
 ports:
   # Argo CD port mapping
-  - port: 11000:30080 # Maps host port 11000 to container port 30080
+  - port: 11000:30080 
     nodeFilters:
-      - loadbalancer # Apply to the loadbalancer
+      - loadbalancer 
 
   # Webapp port mapping
-  - port: 5173:30000 # Maps host port 5173 to container port 30000
+  - port: 5173:30000 
     nodeFilters:
-      - loadbalancer # Apply to the loadbalancer
+      - loadbalancer 
+  
+  # default Traefik port:
+  - port: 9000:9000 
+    nodeFilters:
+      - loadbalancer 
+  
+  # minioapi port:
+  - port: 9005:9005 
+    nodeFilters:
+      - loadbalancer 
+
+  # default HTTP port:
+  - port: 80:80 
+    nodeFilters:
+      - loadbalancer 
+
+  # default HTTPS port:
+  - port: 443:443 
+    nodeFilters:
+      - loadbalancer 
